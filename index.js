@@ -26,11 +26,21 @@ app.listen(3000,()=> console.log("Express server is running at port no : 3000"))
 
 
 //Get all Employees
-app.get('/employees',(res,req)=>{
+app.get('/employees',(req,res)=>{
     mysqlConnection.query('SELECT * FROM Employee',(err,rows,fields)=>{
     if(!err) 
-        console.log(rows);  
+    res.send(rows);
+    else
+        console.log(err);
     
+})
+});
+
+//Get the Employee Data based on Id
+app.get('/employees/:id',(req,res)=>{
+    mysqlConnection.query('SELECT * FROM Employee WHERE id = ?',[req.params.id],(err,rows,fields)=>{
+    if(!err) 
+    res.send(rows);
     else
         console.log(err);
     
