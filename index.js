@@ -9,8 +9,9 @@ app.use(bodyparser.json());
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user : 'root',
-    password : 'Jay@10125',
-    database : 'employeedb'
+    password : 'Jay@10125', 
+    database : 'employeedb',
+    multipleStatements : true
 });
 
 mysqlConnection.connect((err) => {
@@ -44,5 +45,43 @@ app.get('/employees/:id',(req,res)=>{
     else
         console.log(err);
     
+})
+});
+
+//Delete the Employee Data based on Id
+app.delete('/employees/:id',(req,res)=>{
+    mysqlConnection.query('DELETE FROM Employee WHERE id = ?',[req.params.id],(err,rows,fields)=>{
+    if(!err) 
+    res.send("Data Deletion Successful");
+    else
+        console.log(err);
+    
+})
+});
+
+
+//Insert an Employee through the Stored Procedure
+app.post('/employees',(req,res)=>{
+    let emp = req.body;
+    var sql = "SET @EmpID = ?;SET @Name = ?;SET @Designation = ?;SET @City = ?;SET @ContactNo = ?; \
+              CALL AddorUpdateEmployee(@EmpID,@Name,@Designation,@City,@ContactNo);"
+    mysqlConnection.query(sql,[emp.EmpID,emp.Name,emp.Designation,emp.City,emp.ContactNo],(err,rows,fields)=>{
+    if(!err) 
+    res.send("Insertion Completed");
+    else
+        console.log(err);
+})
+});
+
+//Update an Employee through the Stored Procedure
+app.put('/employees',(req,res)=>{
+    let emp = req.body;
+    var sql = "SET @EmpID = ?;SET @Name = ?;SET @Designation = ?;SET @City = ?;SET @ContactNo = ?; \
+              CALL AddorUpdateEmployee(@EmpID,@Name,@Designation,@City,@ContactNo);"
+    mysqlConnection.query(sql,[emp.EmpID,emp.Name,emp.Designation,emp.City,emp.ContactNo],(err,rows,fields)=>{
+    if(!err) 
+    res.send("Updation Done");
+    else
+        console.log(err);
 })
 });
