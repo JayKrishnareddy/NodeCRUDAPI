@@ -1,6 +1,6 @@
 ## Build Restful API's With Node.js - Express - MySQL
 
-# What we are going to cover in this?
+### What we are going to cover in this?
  - Installation of requires packages
  - Database Configuration setup
  - CRUD Methods
