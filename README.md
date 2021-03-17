@@ -1,12 +1,12 @@
-## Build Restful API's With Node.js - Express - MySQL
+## Node.js API Authentication With JSON Web Tokens
 
 ### What we are going to cover in this?
  - Installation of requires packages
- - Database Configuration setup
- - CRUD Methods
- - Execution of Stored Procedure
+ - Dependencies
+ - Project Structure
+ - JWT Authentication
 
 If you want more about this, Do check out my Article 👇🏻
 
-[**C# Corner**](https://www.c-sharpcorner.com/article/build-restful-apis-with-node-js-express-mysql/ "C# Corner")
+[**C# Corner**](https://www.c-sharpcorner.com/article/node-js-api-auth-with-jwt/ "C# Corner")
 
